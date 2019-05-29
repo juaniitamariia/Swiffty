@@ -1,44 +1,70 @@
-<ion-header>
-  <ion-toolbar>
+<ion-header no-border>
+  <ion-toolbar class="header">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>
-      Home
-    </ion-title>
+      <ion-img class="logo"  src="assets/logo-con-nombre.png"></ion-img>
   </ion-toolbar>
 </ion-header>
 
+<!-- Map view -->
+  
+<ion-header no-border>
+  
+  <meta charset='utf-8' />
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  <div id='map' style='width: 100%; height: 400px;'> </div>
+
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet' />
+
+  <style>
+      body {
+          margin: 0;
+          padding: 0;
+      }
+      
+      #map {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          width: 100%;
+      }
+  </style>
+
+</ion-header>
+
+<ion-card class="mainMenu">
+    <h2 class="title">¿Dónde necesita que recojamos su paquete?</h2>
+  <ion-grid class="grid">
+    <ion-row>
+      <ion-col size="1">
+          <ion-img class=locationIcon src= "assets/locationicon.png"></ion-img>
+      </ion-col>
+      <ion-col size="5">
+          <ion-input class="input" placeholder='LOCALIZACIÓN DE RECOGIDO'></ion-input>
+          <ion-input class="input" placeholder='LOCALIZACIÓN DE ENTREGA'></ion-input>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-button expand=block (click)="navigateFoward()" class="submit">
+    SOLICITAR
+  </ion-button>
+</ion-card>
+
 <ion-content>
-    <ion-card class="welcome-card">
-      <ion-img src="/assets/shapes.svg"></ion-img>
-      <ion-card-header>
-        <ion-card-subtitle>Get Started</ion-card-subtitle>
-        <ion-card-title>Welcome to Ionic</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <p>Now that your app has been created, you'll want to start building out features and components. Check out some of the resources below for next steps.</p>
-      </ion-card-content>
-    </ion-card>
-    <ion-list lines="none">
-      <ion-list-header>
-        <ion-label>Resources</ion-label>
-      </ion-list-header>
-      <ion-item href="https://ionicframework.com/docs/">
-        <ion-icon slot="start" color="medium" name="book"></ion-icon>
-        <ion-label>Ionic Documentation</ion-label>
-      </ion-item>
-      <ion-item href="https://ionicframework.com/docs/building/scaffolding">
-        <ion-icon slot="start" color="medium" name="build"></ion-icon>
-        <ion-label>Scaffold Out Your App</ion-label>
-      </ion-item>
-      <ion-item href="https://ionicframework.com/docs/layout/structure">
-        <ion-icon slot="start" color="medium" name="grid"></ion-icon>
-        <ion-label>Change Your App Layout</ion-label>
-      </ion-item>
-      <ion-item href="https://ionicframework.com/docs/theming/basics">
-        <ion-icon slot="start" color="medium" name="color-fill"></ion-icon>
-        <ion-label>Theme Your App</ion-label>
-      </ion-item>
-    </ion-list>
+
+  <div id='mapindex'></div>
+
+  <script>
+      mapboxgl.accessToken = 'pk.eyJ1IjoianJvc2FyaW8yNDEiLCJhIjoiY2pzdXF6NmJiMmgzNzQ5cnJkMjFsa285NSJ9.a6Z7HjeR6q74TBxQhXPy5A';
+      const map = new mapboxgl.Map({
+          container: 'map',
+          style: 'mapbox://styles/jrosario241/cjuig906f01bo1fnr4649i94a',
+          center: [-66.5901489, 18.2208328],
+      });
+
+    //   mapView.setMyLocationEnabled(true); 
+
+  </script>
 </ion-content>
